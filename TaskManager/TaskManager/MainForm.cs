@@ -126,5 +126,11 @@ namespace TaskManager
 
 			sw.Close();
 		}
-	}
+
+        private void terminateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			/*MessageBox.Show(this, listViewProcesses.SelectedItems[0].Text, "Selected PID", MessageBoxButtons.OK);*/
+			d_processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Text)].Kill();
+        }
+    }
 }
