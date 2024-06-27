@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Collections;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TaskManager
 {
@@ -132,5 +134,34 @@ namespace TaskManager
 			/*MessageBox.Show(this, listViewProcesses.SelectedItems[0].Text, "Selected PID", MessageBoxButtons.OK);*/
 			d_processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Text)].Kill();
         }
+
+        private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+			listViewProcesses.ListViewItemSorter = GetListViewItemSorter(e.Column);
+			listViewProcesses.Sort();
+        }
+        Comparer GetListViewItemSorter(int index)
+        {
+            Comparer comparer = (Comparer)listViewProcesses.ListViewItemSorter;
+            if (comparer == null) comparer = new Comparer();
+            comparer.Index = index;
+            string columnName = listViewProcesses.Columns[index].Text;
+			switch (columnName)
+			{
+				case "PID":                
+                    comparer.Type = Comparer.ValueType.Integer;
+					break;
+				case "Name":
+					comparer.Type = Comparer.ValueType.String;
+					break;
+				case"Working set":
+				case"Peak working set":
+					comparer.Type = Comparer.ValueType.Memory;
+					break;
+			}
+			comparer.Direction = comparer.Direction == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+			return comparer;
+        }
     }
+    
 }

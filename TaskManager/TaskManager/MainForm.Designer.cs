@@ -33,6 +33,8 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageProcesses = new System.Windows.Forms.TabPage();
             this.listViewProcesses = new System.Windows.Forms.ListView();
+            this.contextMenuStripProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.terminateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -40,12 +42,10 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.terminateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.tabPageProcesses.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.contextMenuStripProcess.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -85,6 +85,21 @@
             this.listViewProcesses.TabIndex = 0;
             this.listViewProcesses.UseCompatibleStateImageBehavior = false;
             this.listViewProcesses.View = System.Windows.Forms.View.Details;
+            this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
+            // 
+            // contextMenuStripProcess
+            // 
+            this.contextMenuStripProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.terminateToolStripMenuItem});
+            this.contextMenuStripProcess.Name = "contextMenuStripProcess";
+            this.contextMenuStripProcess.Size = new System.Drawing.Size(127, 26);
+            // 
+            // terminateToolStripMenuItem
+            // 
+            this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.terminateToolStripMenuItem.Text = "Terminate";
+            this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
             // tabPage2
             // 
@@ -142,20 +157,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // contextMenuStripProcess
-            // 
-            this.contextMenuStripProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.terminateToolStripMenuItem});
-            this.contextMenuStripProcess.Name = "contextMenuStripProcess";
-            this.contextMenuStripProcess.Size = new System.Drawing.Size(181, 48);
-            // 
-            // terminateToolStripMenuItem
-            // 
-            this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.terminateToolStripMenuItem.Text = "Terminate";
-            this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,9 +172,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.tabControl.ResumeLayout(false);
             this.tabPageProcesses.ResumeLayout(false);
+            this.contextMenuStripProcess.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStripProcess.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
