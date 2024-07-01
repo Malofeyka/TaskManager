@@ -30,62 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPageProcesses = new System.Windows.Forms.TabPage();
-            this.listViewProcesses = new System.Windows.Forms.ListView();
             this.contextMenuStripProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.terminateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl.SuspendLayout();
-            this.tabPageProcesses.SuspendLayout();
+            this.tabPageProcesses = new System.Windows.Forms.TabPage();
+            this.listViewProcesses = new System.Windows.Forms.ListView();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.contextMenuStripProcess.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tabPageProcesses.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabPageProcesses);
-            this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(0, 27);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 398);
-            this.tabControl.TabIndex = 0;
-            // 
-            // tabPageProcesses
-            // 
-            this.tabPageProcesses.Controls.Add(this.listViewProcesses);
-            this.tabPageProcesses.Location = new System.Drawing.Point(4, 22);
-            this.tabPageProcesses.Name = "tabPageProcesses";
-            this.tabPageProcesses.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProcesses.Size = new System.Drawing.Size(792, 372);
-            this.tabPageProcesses.TabIndex = 0;
-            this.tabPageProcesses.Text = "Processes";
-            this.tabPageProcesses.UseVisualStyleBackColor = true;
-            // 
-            // listViewProcesses
-            // 
-            this.listViewProcesses.ContextMenuStrip = this.contextMenuStripProcess;
-            this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewProcesses.FullRowSelect = true;
-            this.listViewProcesses.HideSelection = false;
-            this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
-            this.listViewProcesses.MultiSelect = false;
-            this.listViewProcesses.Name = "listViewProcesses";
-            this.listViewProcesses.Size = new System.Drawing.Size(786, 366);
-            this.listViewProcesses.TabIndex = 0;
-            this.listViewProcesses.UseCompatibleStateImageBehavior = false;
-            this.listViewProcesses.View = System.Windows.Forms.View.Details;
-            this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
             // 
             // contextMenuStripProcess
             // 
@@ -100,16 +60,6 @@
             this.terminateToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 372);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -157,6 +107,46 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // tabPageProcesses
+            // 
+            this.tabPageProcesses.Controls.Add(this.listViewProcesses);
+            this.tabPageProcesses.Location = new System.Drawing.Point(4, 22);
+            this.tabPageProcesses.Name = "tabPageProcesses";
+            this.tabPageProcesses.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageProcesses.Size = new System.Drawing.Size(792, 372);
+            this.tabPageProcesses.TabIndex = 0;
+            this.tabPageProcesses.Text = "Processes";
+            this.tabPageProcesses.UseVisualStyleBackColor = true;
+            // 
+            // listViewProcesses
+            // 
+            this.listViewProcesses.ContextMenuStrip = this.contextMenuStripProcess;
+            this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewProcesses.FullRowSelect = true;
+            this.listViewProcesses.HideSelection = false;
+            this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
+            this.listViewProcesses.MultiSelect = false;
+            this.listViewProcesses.Name = "listViewProcesses";
+            this.listViewProcesses.Size = new System.Drawing.Size(786, 366);
+            this.listViewProcesses.TabIndex = 0;
+            this.listViewProcesses.UseCompatibleStateImageBehavior = false;
+            this.listViewProcesses.View = System.Windows.Forms.View.Details;
+            this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
+            this.listViewProcesses.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.listViewProcesses_DrawColumnHeader);
+            this.listViewProcesses.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.listViewProcesses_DrawSubItem);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabPageProcesses);
+            this.tabControl.Location = new System.Drawing.Point(0, 27);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(800, 398);
+            this.tabControl.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,23 +160,18 @@
             this.Name = "MainForm";
             this.Text = "TaskManager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.tabControl.ResumeLayout(false);
-            this.tabPageProcesses.ResumeLayout(false);
             this.contextMenuStripProcess.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabPageProcesses.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPageProcesses;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ListView listViewProcesses;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -194,6 +179,9 @@
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripProcess;
         private System.Windows.Forms.ToolStripMenuItem terminateToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPageProcesses;
+        private System.Windows.Forms.ListView listViewProcesses;
+        private System.Windows.Forms.TabControl tabControl;
     }
 }
 

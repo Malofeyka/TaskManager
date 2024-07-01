@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.Collections;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TaskManager
 {
@@ -23,9 +16,9 @@ namespace TaskManager
 		public MainForm()
 		{
 			InitializeComponent();
-			cmd = new CommandLine();
-
+			cmd = new CommandLine();			
 			SetColumns();
+			
 			statusStrip1.Items.Add("");
 			LoadProcesses();
 		}
@@ -39,12 +32,19 @@ namespace TaskManager
 			statusStrip1.Items[0].Text = ($"количество  процессов: {listViewProcesses.Items.Count}");
 		}
 		void SetColumns()
-		{
+		{			
+			listViewProcesses.OwnerDraw = true;
 			listViewProcesses.Columns.Add("PID");
 			listViewProcesses.Columns.Add("Name");
 			listViewProcesses.Columns.Add("Working set");
 			listViewProcesses.Columns.Add("Peak working set");
-		}
+            foreach (ColumnHeader h in listViewProcesses.Columns)
+            {
+				if (h.Text == "PID") h.Width = 60;
+				else if (h.Text == "Name") h.Width = 150;
+				else h.Width = 100;
+            }
+        }
 		void LoadProcesses()
 		{
 			//listViewProcesses.Items.Clear();
@@ -132,7 +132,18 @@ namespace TaskManager
         private void terminateToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			/*MessageBox.Show(this, listViewProcesses.SelectedItems[0].Text, "Selected PID", MessageBoxButtons.OK);*/
-			d_processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Text)].Kill();
+			DialogResult result = MessageBox.Show($"Terminate process: {Process.GetProcessById( Convert.ToInt32(listViewProcesses.SelectedItems[0].Text)).ProcessName}?","Terminate",MessageBoxButtons.OKCancel);
+
+			try
+			{
+				if (result == DialogResult.OK) { d_processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Text)].Kill(); }
+				MessageBox.Show("Process terminated successfully!", "Success", MessageBoxButtons.OK);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Erorr", MessageBoxButtons.OK, MessageBoxIcon.Error);				
+			}
+			
         }
 
         private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -161,6 +172,24 @@ namespace TaskManager
 			}
 			comparer.Direction = comparer.Direction == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
 			return comparer;
+        }
+
+        private void listViewProcesses_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+			e.DrawDefault = true;
+        }
+
+        private void listViewProcesses_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            TextFormatFlags flags = TextFormatFlags.Left;
+            flags = TextFormatFlags.Right;
+            if (e.ColumnIndex == 1)
+			{
+				flags = TextFormatFlags.Left;
+			}
+			
+
+            e.DrawText(flags);
         }
     }
     
